@@ -21,7 +21,6 @@ if PY3:
     unicode = str
     long = int
 
-
 bindings = ["PySide", "PyQt4"]
 binding = None
 
@@ -832,7 +831,7 @@ class Ghost(object):
 
             QSslConfiguration.setDefaultConfiguration(ssl_conf)
 
-        request = QNetworkRequest(QUrl(address))
+        request = QNetworkRequest(QUrl.fromEncoded(address))
         request.CacheLoadControl(0)
         for header in headers:
             request.setRawHeader(header, headers[header])
