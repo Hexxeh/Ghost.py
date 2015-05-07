@@ -671,38 +671,8 @@ class Ghost(object):
                              "%sOperation" % method.capitalize())
         except AttributeError:
             raise Error("Invalid http method %s" % method)
-<<<<<<< HEAD
-        request = QNetworkRequest(QUrl(address))
-=======
-
-        if client_certificate:
-            ssl_conf = QSslConfiguration.defaultConfiguration()
-
-            if "certificate_path" in client_certificate:
-                try:
-                    certificate = QtNetwork.QSslCertificate.fromPath(
-                        client_certificate["certificate_path"],
-                        QSsl.Pem,
-                    )[0]
-                except IndexError:
-                    raise Error(
-                        "Can't find certicate in %s"
-                        % client_certificate["certificate_path"]
-                    )
-
-                ssl_conf.setLocalCertificate(certificate)
-
-            if "key_path" in client_certificate:
-                private_key = QtNetwork.QSslKey(
-                    open(client_certificate["key_path"]).read(),
-                    QSsl.Rsa,
-                )
-                ssl_conf.setPrivateKey(private_key)
-
-            QSslConfiguration.setDefaultConfiguration(ssl_conf)
 
         request = QNetworkRequest(QUrl.fromEncoded(address))
->>>>>>> e5a8b68... Remove default URL encoding
         request.CacheLoadControl(0)
         for header in headers:
             request.setRawHeader(header, headers[header])
